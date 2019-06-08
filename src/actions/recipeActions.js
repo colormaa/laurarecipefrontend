@@ -1,11 +1,12 @@
 import * as types from './actionType';
 import axios from 'axios';
+const link = "https://laurarecipebackend.herokuapp.com";
 export const getRecipeAll=(page, limit, search)=>dispatch=>{
     dispatch({
         type: types.SET_RECIPE_LOADING, 
         payload: true
     })
-    axios.get(`/api/recipes/all?page=${page}&limit=${limit}&search=${search}`)
+    axios.get(`${link}/api/recipes/all?page=${page}&limit=${limit}&search=${search}`)
     .then(re=>{
         console.log("Recipe count", re);
         dispatch({
@@ -42,7 +43,7 @@ export const getRecipeCategory =(category, page)=>dispatch=>{
         type: types.SET_RECIPE_LOADING, 
         payload: true
     })
-    axios.get(`/api/recipes/getByCategory?category=${category}&page=${page}`)
+    axios.get(`${link}/api/recipes/getByCategory?category=${category}&page=${page}`)
     .then(re=>{
         console.log("re category ", re);
         dispatch({
@@ -73,7 +74,7 @@ export const setCategory =(category)=>dispatch=>{
     })
 }
 export const getRecipePopular =()=>dispatch=>{
-    axios.get('/api/recipes/popular')
+    axios.get(`${link}/api/recipes/popular`)
     .then(re=>{
         console.log("popular recipe", re);
         dispatch({
@@ -86,7 +87,7 @@ export const getRecipePopular =()=>dispatch=>{
     })
 }
 export const selectRecipe =(id)=>dispatch=>{
-    axios.get(`/api/recipes/item/${id}`)
+    axios.get(`${link}/api/recipes/item/${id}`)
     .then(re=>{
         console.log("re selected ", re);
     })
@@ -96,7 +97,7 @@ export const selectRecipe =(id)=>dispatch=>{
 }
 
 export const addRecipe =(recipe)=>dispatch=>{
-    axios.post('/api/recipes/add', recipe)
+    axios.post(`${link}/api/recipes/add`, recipe)
     .then(re=>{
         //console.log(" recipe insert ", re);
         dispatch({
@@ -115,7 +116,7 @@ export const addRecipe =(recipe)=>dispatch=>{
     })
 }
 export const updateRecipe =(recipe)=>dispatch=>{
-    axios.post('/api/recipes/update', recipe)
+    axios.post(`${link}/api/recipes/update`, recipe)
     .then(re=>{
         //console.log(" recipe insert ", re);
         dispatch({
@@ -134,7 +135,7 @@ export const updateRecipe =(recipe)=>dispatch=>{
     })
 }
 export const deleteRecipe =(id)=>dispatch=>{
-    axios.get(`/api/recipes/delete/${id}`)
+    axios.get(`${link}/api/recipes/delete/${id}`)
     .then(re=>{
         //console.log(" recipe insert ", re);
         dispatch({

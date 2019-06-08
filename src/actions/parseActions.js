@@ -1,9 +1,10 @@
 import * as types from './actionType';
 import axios from 'axios';
 import { setTimeout } from 'timers';
+const link = "https://laurarecipebackend.herokuapp.com";
 function mytimeout (item){
     return new Promise(resolve =>{
-        axios.get(`/api/recipes/parse/number/${item}`)
+        axios.get(`${link}/api/recipes/parse/number/${item}`)
         .then(res=>{
             console.log("res ", res);
             resolve(item);
@@ -17,7 +18,7 @@ function mytimeout (item){
 }
 function mytitleparse(item, title){
     return new Promise(resolve=>{
-        axios.get(`/api/recipes/parse/titlenum/?number=${item}&title=${title}`)
+        axios.get(`${link}/api/recipes/parse/titlenum/?number=${item}&title=${title}`)
         .then(res=>{
             resolve(item);
         })
@@ -47,7 +48,7 @@ export const parseTitle =(title)=>dispatch=>{
         payload: res.data.data
     });
     */
-    axios.get(`/api/recipes/parse/titles/${title}`)
+    axios.get(`${link}/api/recipes/parse/titles/${title}`)
     .then(async res=>{
         
         console.log("titles finished ");
@@ -67,7 +68,7 @@ export const parseTitle =(title)=>dispatch=>{
 }
 export const startParseAll=()=>dispatch=>{
     console.log("start parse all");
-    axios.get('/api/recipes/parse/recipefull')
+    axios.get(`${link}/api/recipes/parse/recipefull`)
     .then(async res=>{
         console.log("array parsed" );
         dispatch({

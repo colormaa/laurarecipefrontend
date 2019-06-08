@@ -5,6 +5,8 @@ import axios from 'axios';
 import {getRecipePopular} from '../../actions/recipeActions';
 import {connect} from 'react-redux';
 import userimage from '../../images/user.png';
+const link = "https://laurarecipebackend.herokuapp.com";
+ 
 class ProductDetail extends React.Component{
     state = {
         product: null, 
@@ -17,7 +19,7 @@ class ProductDetail extends React.Component{
         this.setState({loading: true});
         console.log("this.props history", this.props.history.location.pathname.split('/')[2]);
         const id = this.props.history.location.pathname.split('/')[2];
-        axios.get(`/api/recipes/item/${id}`)
+        axios.get(`${link}/api/recipes/item/${id}`)
         .then(res=>{
             this.setState({product: res.data.data, loading: false});
         })
@@ -35,7 +37,7 @@ class ProductDetail extends React.Component{
         if(this.props.auth.isAuthenticated && this.state.product !==null){
             console.log("auth ", this.props.auth);
            //this.props.addComment(this.props.auth.user.id, this.state.comment, this.state.product.link);
-           axios.post('/api/recipes/addComment', {userid: this.props.auth.user.id, text: this.state.comment, recipelink : this.state.product.link})
+           axios.post(`${link}/api/recipes/addComment`, {userid: this.props.auth.user.id, text: this.state.comment, recipelink : this.state.product.link})
             .then(re=>{
                 console.log("re console comment ", re);
                 this.setState({product: re.data.data});
@@ -51,7 +53,7 @@ class ProductDetail extends React.Component{
     }
     selectElement=(id)=>{
         this.props.history.push(`/product/${id}`);
-        axios.get(`/api/recipes/item/${id}`)
+        axios.get(`${link}/api/recipes/item/${id}`)
         .then(res=>{
             this.setState({product: res.data.data, loading: false});
         })

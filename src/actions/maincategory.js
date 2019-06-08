@@ -1,7 +1,8 @@
 import axios from 'axios';
 import * as types from './actionType';
+const link = "https://laurarecipebackend.herokuapp.com";
 export const getMainCategoryAll =()=>dispatch=>{
-    axios.get('/api/maincategories/all')
+    axios.get(`${link}/api/maincategories/all`)
     .then(res=>{
         console.log("main category all ", res.data.data);
         dispatch({type: types.GET_MAINCATEGORIES, 
@@ -27,7 +28,7 @@ export const getMainCategoryAll =()=>dispatch=>{
     });
 }
 export const addMainCategory =(cats)=>dispatch=>{
-    axios.post('/api/maincategories/add', cats)
+    axios.post(`${link}/api/maincategories/add`, cats)
     .then(res=>{
         console.log("res main category", res);
         dispatch({type: types.GET_MAINCATEGORIES, 
@@ -46,7 +47,7 @@ export const addMainCategory =(cats)=>dispatch=>{
     })
 }
 export const updateMainCategory =(cats)=>dispatch=>{
-    axios.post('/api/maincategories/update', cats)
+    axios.post(`${link}/api/maincategories/update`, cats)
     .then(res=>{
         console.log("res main category", res);
         dispatch({type: types.GET_MAINCATEGORIES, 
@@ -66,7 +67,7 @@ export const updateMainCategory =(cats)=>dispatch=>{
     })
 }
 export const deleteMainCategory=(catid)=>dispatch=>{
-    axios.delete(`/api/maincategories/delete/${catid}`)
+    axios.delete(`${link}/api/maincategories/delete/${catid}`)
     .then(res=>{
         //console.log("res", res);
         dispatch({type: types.GET_MAINCATEGORIES, 

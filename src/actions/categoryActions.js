@@ -1,7 +1,8 @@
 import axios from 'axios';
 import * as types from './actionType';
+const link = "https://laurarecipebackend.herokuapp.com";
 export const addCategory=(cat)=>dispatch=>{
-    axios.post('/api/categories/add', cat)
+    axios.post(`${link}/api/categories/add`, cat)
     .then(res=>{
         //console.log("red add categories ", res.data);
         dispatch({type: types.GET_CATEGORIES, 
@@ -21,7 +22,7 @@ export const addCategory=(cat)=>dispatch=>{
     })
 }
 export const allCategory=()=>dispatch=>{
-    axios.get('/api/categories/all')
+    axios.get(`${link}/api/categories/all`)
     .then(res=>{
         console.log("category all ", res.data.data);
         
@@ -45,7 +46,7 @@ export const allCategory=()=>dispatch=>{
     });
 }
 export const deleteCategory=(catid)=>dispatch=>{
-    axios.delete(`/api/categories/delete/${catid}`)
+    axios.delete(`${link}/api/categories/delete/${catid}`)
     .then(res=>{
         //console.log("res", res);
         dispatch({type: types.GET_CATEGORIES, 
@@ -67,7 +68,7 @@ export const deleteCategory=(catid)=>dispatch=>{
     });
 }
 export const updateCategory=(cat)=>dispatch=>{
-    axios.post('/api/categories/update', cat)
+    axios.post(`${link}/api/categories/update`, cat)
     .then(res=>{
         console.log("red update categories ", res.data);
         dispatch({type: types.GET_CATEGORIES, 

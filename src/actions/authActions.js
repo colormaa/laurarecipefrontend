@@ -2,8 +2,9 @@ import * as types from './actionType';
 import axios from 'axios';
 import setAuthToken from './utils/setAuthToken';
 import jwt_decode from 'jwt-decode';
+const link = "https://laurarecipebackend.herokuapp.com";
 export const loginUser =(userData, history)=>dispatch=>{
-    axios.post('/api/users/login', userData)
+    axios.post(`${link}/api/users/login`, userData)
     .then(res=>{
         console.log("res data register", res);
             localStorage.setItem('jwtToken', res.data.token);
@@ -30,7 +31,7 @@ export const logoutUser =()=>dispatch=>{
 export const registerUser=(userData, history)=>dispatch=>{
     console.log('dispatch register user', userData);
     
-    axios.post('/api/users/register', userData)
+    axios.post(`${link}/api/users/register`, userData)
         .then(res=>{
             console.log("res data register", res);
             localStorage.setItem('jwtToken', res.data.token);
