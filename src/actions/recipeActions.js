@@ -43,6 +43,10 @@ export const getRecipeCategory =(category, page)=>dispatch=>{
         type: types.SET_RECIPE_LOADING, 
         payload: true
     })
+    dispatch({
+        type: types.SET_SEARCH, 
+        payload: ''
+    })
     axios.get(`${link}/api/recipes/getByCategory?category=${category}&page=${page}`)
     .then(re=>{
         console.log("re category ", re);
@@ -58,10 +62,7 @@ export const getRecipeCategory =(category, page)=>dispatch=>{
             type: types.SET_RECIPE_LOADING, 
             payload: false
         })
-        dispatch({
-            type: types.SET_SEARCH, 
-            payload: ''
-        })
+        
     })
     .catch(err=>{
         console.log("err ", err);

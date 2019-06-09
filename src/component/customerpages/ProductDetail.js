@@ -5,6 +5,8 @@ import axios from 'axios';
 import {getRecipePopular} from '../../actions/recipeActions';
 import {connect} from 'react-redux';
 import userimage from '../../images/user.png';
+//var fs = require('fs');
+//var youtubedl = require('youtube-dl');
 const link = "https://laurarecipebackend.herokuapp.com";
  
 class ProductDetail extends React.Component{
@@ -40,7 +42,7 @@ class ProductDetail extends React.Component{
            axios.post(`${link}/api/recipes/addComment`, {userid: this.props.auth.user.id, text: this.state.comment, recipelink : this.state.product.link})
             .then(re=>{
                 console.log("re console comment ", re);
-                this.setState({product: re.data.data});
+                this.setState({product: re.data.data, comment: '', error: false});
             })
             .catch(err=>{
                 console.log("re catch ", err);
@@ -65,6 +67,31 @@ class ProductDetail extends React.Component{
     changeComment=(e)=>{
         this.setState({comment: e.target.value, error: e.target.value === '' ? true: false});
     }
+    downloadVideo=()=>{
+        //window.location.href = `http://localhost:4000/download?URL=${URL}`;
+        var mywindow = window.open(`${link}/api/recipes/download?url=https://www.youtube.com/watch?v=${this.state.product.youtube}&title=${this.state.product.title}`);
+        //mywindow.close();
+        //var mywindow = window.open("https://www.google.com");
+        setTimeout(()=>{
+            mywindow.close();
+        }, 2000);
+        
+        /*var video = youtubedl(`http://www.youtube.com/watch?v=${this.state.product.youtube}`,
+        // Optional arguments passed to youtube-dl.
+        ['--format=18'],
+        // Additional options can be given for calling `child_process.execFile()`.
+        { cwd: __dirname });
+
+        // Will be called when the download starts.
+        video.on('info', function(info) {
+        console.log('Download started');
+        console.log('filename: ' + info._filename);
+        console.log('size: ' + info.size);
+        });
+
+        video.pipe(fs.createWriteStream('myvideo.mp4'));
+        */
+    }
     render(){
         const opts = {
             height: '390',
@@ -84,7 +111,7 @@ class ProductDetail extends React.Component{
                 <div className="productfull">
                     <h3 className="productfull__title">{product.title}</h3>
                     <iframe  className = "productfull__iframe" src={`https://www.youtube.com/embed/${product.youtube}`} frameBorder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
-                    
+                    <div className ="d-flex justify-content-around">
                     <div className="productfull__infobox">
                         <div className="productfull__info">
                             <span>PREParation </span> {product.preparation}
@@ -98,6 +125,10 @@ class ProductDetail extends React.Component{
                         <div className="productfull__info">
                             <span>episode </span> {product.episode}
                         </div>
+                    </div>
+                    <div className ="buttondownload">
+                        <button onClick = {()=>this.downloadVideo()}>Download Video</button>
+                    </div>
                     </div>
                     <div className="productfull__recipebox">
                         <h3 className="productfull__title">Ingredients</h3>

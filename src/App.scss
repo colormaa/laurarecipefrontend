@@ -485,6 +485,8 @@ footer{
       display: grid;
       grid-template-columns: 1fr;
       margin: 20px;
+      float: left;
+      height: 100px;
       
   }
 
@@ -542,6 +544,27 @@ footer{
   color: #333;
   margin: 20px 0;
   grid-column: 1/-1;
+}
+.buttondownload{
+  
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  & button{
+    padding: 10px;
+    background-color: var(--mydarkpink);
+    color: white;
+    border: 1px solid var(--mydarkpink);
+    border-radius: 3px;
+    box-shadow: 2px 2px 5px #aaa;
+    transition: all 0.5s ease;
+    display: block;
+    &:hover{
+      transform: translateY(-1px) scale(1.1, 1.1);
+      box-shadow: 2px 2px 10px #aaa;
+    }
+  }
 }
 .popular{
   //overflow: auto;
@@ -678,7 +701,7 @@ footer{
 }
 .usercategorytab{
   position: fixed;
-  top: 40%;
+  top: 15%;
   left: 0;
   &__item{
     display: flex;

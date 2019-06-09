@@ -5,6 +5,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "firebase": "^6.1.0",
+    "fs-react": "0.0.4",
     "jwt-decode": "^2.2.0",
     "lodash.throttle": "^4.1.1",
     "node-sass": "^4.12.0",
