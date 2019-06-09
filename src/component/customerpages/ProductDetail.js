@@ -69,13 +69,12 @@ class ProductDetail extends React.Component{
     }
     downloadVideo=()=>{
         //window.location.href = `http://localhost:4000/download?URL=${URL}`;
-        var mywindow = window.open(`${link}/api/recipes/download?url=https://www.youtube.com/watch?v=${this.state.product.youtube}&title=${this.state.product.title}`);
-        //mywindow.close();
-        //var mywindow = window.open("https://www.google.com");
+         var mywindow = window.open(`${link}/api/recipes/download?url=https://www.youtube.com/watch?v=${this.state.product.youtube}&title=${this.state.product.title}`);
         setTimeout(()=>{
             mywindow.close();
-        }, 2000);
-        
+        }, 5000);
+        //var mywindow = window.open("https://www.google.com");
+       
         /*var video = youtubedl(`http://www.youtube.com/watch?v=${this.state.product.youtube}`,
         // Optional arguments passed to youtube-dl.
         ['--format=18'],
