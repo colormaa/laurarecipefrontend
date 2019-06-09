@@ -138,6 +138,8 @@ footer{
   &__image{
     width: 100%;
   }
+  z-index: 1;
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -703,10 +705,13 @@ footer{
   position: fixed;
   top: 15%;
   left: 0;
+  
   &__item{
     display: flex;
-    
+    position: relative;
+    z-index: 20;
     color: white;
+    font-size: 14px;
     &:hover{
       box-shadow: 2px 2px 5px #777;
     }
@@ -720,13 +725,13 @@ footer{
       //box-shadow: 2px 2px 5px #777;
     }
     &:hover &__icon{
-      padding: 10px 0 10px 10px;
+      padding: 8px 0 8px 8px;
       width: auto;
       //box-shadow: -1px -1px 5px #777;
     }
     &__icon{
       background-color: var(--mydarkpink);
-      padding: 10px 10px 10px 10px;
+      padding: 8px 8px 8px 8px;
       width: 30px;
       display: block;
       transition: all 1s ease;
@@ -734,7 +739,7 @@ footer{
     }
     &__text{
       position: relative;
-      padding: 10px 10px 10px 0;
+      padding: 8px 8px 8px 0;
       width: 0;
       transition: width 1s ease, background-color 0.5s ease;
       display: block;
