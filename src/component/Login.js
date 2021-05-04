@@ -32,7 +32,7 @@ class LoginRegister extends React.Component{
         return(
             <div className = "loginregister">
                 <div className = "loginregister__text">
-                    <h3>Recipe <br/></h3>
+                    <h3>Recipe test<br/></h3>
                 </div>
                 <div className = "loginregister__main">
                     <div className = "loginregister__header">
