@@ -20,6 +20,7 @@ function mytitleparse(item, title){
     return new Promise(resolve=>{
         axios.get(`${link}/api/recipes/parse/titlenum/?number=${item}&title=${title}`)
         .then(res=>{
+            
             resolve(item);
         })
         .catch(err=>{
@@ -35,6 +36,7 @@ export const dispatchRecipe =(item)=>{
     }
 }   
 async function arrayTitle(arr, title){
+    console.log("array title ", arr, title)
     const val = await mytitleparse(arr, title);
     return val;
 }
@@ -51,7 +53,6 @@ export const parseTitle =(title)=>dispatch=>{
     axios.get(`${link}/api/recipes/parse/titles/${title}`)
     .then(async res=>{
         
-        console.log("titles finished ");
         dispatch({
             type: types.PARSE_ALL, 
             payload: res.data.data
@@ -85,7 +86,4 @@ export const startParseAll=()=>dispatch=>{
     .catch(err=>{
         console.log("Error", err);
     })
-}
-const parseItem=(item)=>{
-
 }

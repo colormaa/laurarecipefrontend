@@ -29,7 +29,7 @@ class HelperReducer extends React.Component{
             username: this.state.username, 
             email: this.state.email, 
             password: this.state.password, 
-                
+            //role:"admin" 
         }
         this.props.registerUser(user, this.props.history);
         console.log("user ", user);

@@ -9,8 +9,8 @@ class Dashboard extends React.Component{
                     <Link to = "/">Dashboard</Link>
                     <Link to = "/admin/recipecategory">Recipe</Link>
                     <Link to = "/admin/category">Category</Link>
-                    <Link to = "/admin/maincategory">Main Category</Link>
-                    <Link to = "/">Users</Link>
+                    {/* <Link to = "/admin/maincategory">Main Category</Link> */}
+                    {/* <Link to = "/">Users</Link> */}
                     <Link to = "/admin/parse">Parse</Link>
                     
                 </div>

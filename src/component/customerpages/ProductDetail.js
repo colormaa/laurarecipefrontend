@@ -1,6 +1,7 @@
 import React from 'react';
 import {withRouter} from 'react-router-dom';
 import axios from 'axios';
+//import youtubedl from 'youtube-dl-exec'
 ///import YouTube from 'react-youtube';
 import {getRecipePopular} from '../../actions/recipeActions';
 import {connect} from 'react-redux';
@@ -19,7 +20,7 @@ class ProductDetail extends React.Component{
     }
     componentDidMount(){
         this.setState({loading: true});
-        console.log("this.props history", this.props.history.location.pathname.split('/')[2]);
+        //console.log("this.props history", this.props.history.location.pathname.split('/')[2]);
         const id = this.props.history.location.pathname.split('/')[2];
         axios.get(`${link}/api/recipes/item/${id}`)
         .then(res=>{
@@ -32,12 +33,12 @@ class ProductDetail extends React.Component{
         if(this.props.recipe.popularrecipe.length ===0){
             this.props.getRecipePopular();
         }
-        console.log("window.location.href", window.location.href)
+        //console.log("window.location.href", window.location.href)
     }
     onSubmitComment =(e)=>{
         e.preventDefault();
         if(this.props.auth.isAuthenticated && this.state.product !==null){
-            console.log("auth ", this.props.auth);
+        //console.log("auth ", this.props.auth);
            //this.props.addComment(this.props.auth.user.id, this.state.comment, this.state.product.link);
            axios.post(`${link}/api/recipes/addComment`, {userid: this.props.auth.user.id, text: this.state.comment, recipelink : this.state.product.link})
             .then(re=>{
@@ -50,7 +51,7 @@ class ProductDetail extends React.Component{
         }else{
             this.props.history.push('/login');
         }
-        console.log("comment submit", this.state);
+        //console.log("comment submit", this.state);
 
     }
     selectElement=(id)=>{
@@ -69,27 +70,20 @@ class ProductDetail extends React.Component{
     }
     downloadVideo=()=>{
         //window.location.href = `http://localhost:4000/download?URL=${URL}`;
-         var mywindow = window.open(`${link}/api/recipes/download?url=https://www.youtube.com/watch?v=${this.state.product.youtube}&title=${this.state.product.title}`);
+        var mywindow = window.open(`${link}/api/recipes/download?title=${this.state.product.title}&url=https://www.youtube.com/watch?v=${this.state.product.youtube}`);
         setTimeout(()=>{
             mywindow.close();
-        }, 5000);
+        }, 2000);
+
+        //const subprocess = youtubedl.raw('https://www.youtube.com/watch?v=BzE1mX4Px0I', { noCheckCertificate: true })
+
+        //console.log(`Running subprocess as ${subprocess.pid}`)
+        
+        //subprocess.stdout.pipe(res)
+        //subprocess.stderr.pipe(res)
         //var mywindow = window.open("https://www.google.com");
        
-        /*var video = youtubedl(`http://www.youtube.com/watch?v=${this.state.product.youtube}`,
-        // Optional arguments passed to youtube-dl.
-        ['--format=18'],
-        // Additional options can be given for calling `child_process.execFile()`.
-        { cwd: __dirname });
-
-        // Will be called when the download starts.
-        video.on('info', function(info) {
-        console.log('Download started');
-        console.log('filename: ' + info._filename);
-        console.log('size: ' + info.size);
-        });
-
-        video.pipe(fs.createWriteStream('myvideo.mp4'));
-        */
+        
     }
     render(){
         const opts = {

@@ -32,7 +32,7 @@ class LoginRegister extends React.Component{
         return(
             <div className = "loginregister">
                 <div className = "loginregister__text">
-                    <h3>Turing API <br/>Online Shop</h3>
+                    <h3>Recipe <br/></h3>
                 </div>
                 <div className = "loginregister__main">
                     <div className = "loginregister__header">
@@ -40,7 +40,6 @@ class LoginRegister extends React.Component{
                         <div onClick = {(e)=>this.registerClicked(e)} className = {["loginbutton", this.state.selected ==='register' ? 'loginbutton__active': null].join(' ')}>Register</div>
                     </div>
                     <div className = "loginregister__content">
-
                         {content}
                     </div>
 

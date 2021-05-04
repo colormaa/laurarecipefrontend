@@ -4,7 +4,7 @@ const link = "https://laurarecipebackend.herokuapp.com";
 export const addCategory=(cat)=>dispatch=>{
     axios.post(`${link}/api/categories/add`, cat)
     .then(res=>{
-        //console.log("red add categories ", res.data);
+        console.log("red add categories ", res.data.data);
         dispatch({type: types.GET_CATEGORIES, 
         payload: res.data.data});
         dispatch({type: types.GET_ERRORS, 
@@ -12,7 +12,7 @@ export const addCategory=(cat)=>dispatch=>{
         });
     })
     .catch(err=>{
-        if(err.response.status === 400){
+        if(err&& err.response&&err.response.status === 400){
             dispatch({type: types.GET_ERRORS, 
                 payload: err.response.data
             });

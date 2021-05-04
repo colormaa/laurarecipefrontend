@@ -32,7 +32,8 @@ class MainCategory extends React.Component{
         operation: 'Add',
         errors: {}, 
         image: null, 
-        link: ''
+        link: '',
+        search:''
     }
     componentWillReceiveProps(nextProps){
         //console.log("Main category will receive props ===>  ", nextProps.maincategory);
@@ -648,6 +649,12 @@ class MainCategory extends React.Component{
         console.log("onChangeRadio ", e.target.value);
         this.setState({status: e.target.value});
     }
+    onkeypress=(event)=>{
+        if(event.key === 'Enter'){
+            console.log('enter press here! ')
+            this.props.getRecipeAll(0, 20, this.state.search);
+          }
+    }
     render(){
         
         const dataschema = {
@@ -663,7 +670,7 @@ class MainCategory extends React.Component{
                 <div className = "templateBoard__first">
                     <button type="button" className="btn btn-info" onClick ={()=>this.setState({operation: 'Add', name: '', special: false, errors: {}})} data-toggle="modal" data-target="#myModal">Add</button>
                     <div className = "searchHolder">
-                        <input type = "text" placeholder = "search"/>
+                        <input onKeyPress={(e)=>{this.onkeypress(e)}}  onChange={(e)=>{this.setState({search:e.target.value})}} value={this.state.search} type = "text" placeholder = "search"/>
                     </div>
                     <div className = "buttonsearch">
                         <i className="material-icons">search</i>
