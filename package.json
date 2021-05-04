@@ -17,8 +17,7 @@
     "react-scripts": "3.0.1",
     "react-youtube": "^7.9.0",
     "redux": "^4.0.1",
-    "redux-thunk": "^2.3.0",
-    "youtube-dl-exec": "^1.2.3"
+    "redux-thunk": "^2.3.0"
   },
   "scripts": {
     "start": "react-scripts start",
